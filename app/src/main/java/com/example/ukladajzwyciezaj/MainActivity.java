@@ -24,6 +24,7 @@ import android.graphics.Color;
 
 
 public class MainActivity extends AppCompatActivity {
+    int quantityplayers = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +38,22 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMarginEnd(spacing);
-        EditText editText = new EditText(this);
 
+        quantityplayers = quantityplayers+1;
+        String Numeration = quantityplayers + ".";
+        TextView textView = new TextView(this);
+        textView.setText(Numeration);
+        textView.setTextSize(20);
+        linearLayouthorizontal.addView(textView, layoutParams);
+
+        EditText editText = new EditText(this);
         linearLayouthorizontal.addView(editText, layoutParams);
         Button buttondelete = helpMetod.getButton(this, "delete", Color.RED);
 
         linearLayouthorizontal.addView(buttondelete, layoutParams);
         Button buttonsubmit = helpMetod.getButton(this, "submit", Color.GREEN);
-        linearLayouthorizontal.addView(buttonsubmit);
+
+        linearLayouthorizontal.addView(buttonsubmit, layoutParams);
         linearLayout.addView(linearLayouthorizontal);
     }
 }
