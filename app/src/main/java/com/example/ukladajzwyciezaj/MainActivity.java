@@ -23,17 +23,21 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
-    int quantityplayers = 0;
+    ArrayList<String> NamePlayers = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
+    int quantityPlayers = 0;
     public void OnClickButtonAddPlayer(View v){
+        //quantityPlayers = quantityPlayers+1;
         LinearLayout linearLayout = findViewById(R.id.linearlayout);
         LinearLayout linearLayouthorizontal = new LinearLayout(this);
         int spacing = getResources().getDimensionPixelSize(R.dimen.button_spacing);
@@ -41,15 +45,16 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMarginEnd(spacing);
 
-        TextView textView = helpMetod.getEditText(this);
+        TextView textView = helpMetod.getTextView(this);
         linearLayouthorizontal.addView(textView, layoutParams);
 
         EditText editText = helpMetod.getEditText(this);
         linearLayouthorizontal.addView(editText, layoutParams);
+
         Button buttondelete = helpMetod.getButtonDelete(this, linearLayout, linearLayouthorizontal);
-        
         linearLayouthorizontal.addView(buttondelete, layoutParams);
-        Button buttonsubmit = helpMetod.getButtonsubmit(this);
+
+        Button buttonsubmit = helpMetod.getButtonsubmit(this, NamePlayers, editText);
 
         linearLayouthorizontal.addView(buttonsubmit, layoutParams);
         linearLayout.addView(linearLayouthorizontal);
