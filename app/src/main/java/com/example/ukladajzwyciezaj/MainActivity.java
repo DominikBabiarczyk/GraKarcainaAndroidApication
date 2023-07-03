@@ -11,6 +11,8 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
+import android.text.InputFilter;
+import android.text.method.DigitsKeyListener;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -39,19 +41,15 @@ public class MainActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.setMarginEnd(spacing);
 
-        quantityplayers = quantityplayers+1;
-        String Numeration = quantityplayers + ".";
-        TextView textView = new TextView(this);
-        textView.setText(Numeration);
-        textView.setTextSize(20);
+        TextView textView = helpMetod.getEditText(this);
         linearLayouthorizontal.addView(textView, layoutParams);
 
-        EditText editText = new EditText(this);
+        EditText editText = helpMetod.getEditText(this);
         linearLayouthorizontal.addView(editText, layoutParams);
-        Button buttondelete = helpMetod.getButton(this, "delete", Color.RED);
-
+        Button buttondelete = helpMetod.getButtonDelete(this, linearLayout, linearLayouthorizontal);
+        
         linearLayouthorizontal.addView(buttondelete, layoutParams);
-        Button buttonsubmit = helpMetod.getButton(this, "submit", Color.GREEN);
+        Button buttonsubmit = helpMetod.getButtonsubmit(this);
 
         linearLayouthorizontal.addView(buttonsubmit, layoutParams);
         linearLayout.addView(linearLayouthorizontal);
