@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -38,7 +39,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void OnCLickButtonStart(View v){
-        Toast.makeText(getApplicationContext(), "Nie wprowadzono nazwy", Toast.LENGTH_SHORT).show();
+        if (NamePlayers.isEmpty()){
+            Toast.makeText(getApplicationContext(), "Nie wprowadzono graczy", Toast.LENGTH_SHORT).show();
+        } else if (NamePlayers.size() < 2) {
+            Toast.makeText(getApplicationContext(), "Wprowadzono za mało graczy", Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intent = new Intent(MainActivity.this, GameActivity.class);
+            startActivity(intent);
+        }
     }
 
     public void OnClickButtonAddPlayer(View v){
