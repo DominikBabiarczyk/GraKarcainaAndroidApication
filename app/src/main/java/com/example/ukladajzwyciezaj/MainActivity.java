@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Wprowadzono za mało graczy", Toast.LENGTH_SHORT).show();
         }else {
             Intent intent = new Intent(MainActivity.this, GameActivity.class);
+            ArrayList<String> NamePlayersList = new ArrayList<>(NamePlayers);
+            intent.putStringArrayListExtra("NamePlayers",NamePlayersList);
             startActivity(intent);
         }
     }
