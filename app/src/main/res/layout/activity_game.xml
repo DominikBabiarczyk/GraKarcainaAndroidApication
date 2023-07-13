@@ -57,7 +57,8 @@
         android:layout_width="match_parent"
         android:layout_height="500dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <HorizontalScrollView
             android:id="@+id/horizonatalScrollView"
@@ -66,7 +67,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:id="@+id/linearlayout10">
 
                 <GridView
                     android:id="@+id/gridview"
@@ -80,8 +82,21 @@
                     android:verticalSpacing="10dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="0dp" />
+
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:onClick="OnclickButtonExxhance"
+        android:text="Button"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

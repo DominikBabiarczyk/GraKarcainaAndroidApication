@@ -18,19 +18,17 @@ public class Player {
     private PileOfKart pileOfKart;
     private ForwardingAttack informationAttack;
     protected HashMap<Integer, Kart> positionKart;
-    //private int lenghtPlaceGame;
-    //private int highPlaceGame;
-    private LinearLayout card_grid;
-    //private LinearLayout card_in_hand;
+
+
+    private View card_grid;
+
 
     public Player(Context context) throws IOException {
         this.pileOfKart = new PileOfKart(context);
         this.positionKart = new HashMap<>();
+        this.card_grid = LayoutInflater.from(context).inflate(R.layout.card_grid, null);
         this.informationAttack = new ForwardingAttack();
-        this.card_grid = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.card_grid, null);
-        //this.card_in_hand =
-        //this.lenghtPlaceGame = lenghtPlaceGame;
-        //this.highPlaceGame = highPlaceGame;
+
     }
 
     public void EnterCardToPlay(GridView gridView, Kart kart, Integer position){
@@ -64,8 +62,8 @@ public class Player {
 
     //}
 
-
-    public LinearLayout getCard_grid() {
+    public View getCard_grid() {
         return card_grid;
     }
+
 }
