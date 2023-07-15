@@ -8,7 +8,10 @@ import java.util.Map;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.ukladajzwyciezaj.Kart;
@@ -19,15 +22,20 @@ public class Player {
     private ForwardingAttack informationAttack;
     protected HashMap<Integer, Kart> positionKart;
 
-
-    private View card_grid;
+    private Integer[] placeToKart = new Integer[80];
+    private Context context;
+    private ImageAdapter imageAdapter;
 
 
     public Player(Context context) throws IOException {
         this.pileOfKart = new PileOfKart(context);
         this.positionKart = new HashMap<>();
-        this.card_grid = LayoutInflater.from(context).inflate(R.layout.card_grid, null);
         this.informationAttack = new ForwardingAttack();
+        this.context = context;
+        this.imageAdapter = new ImageAdapter();
+        for (int j=0; j<placeToKart.length; j++){
+            this.placeToKart[j] = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
+        }
 
     }
 
@@ -62,8 +70,47 @@ public class Player {
 
     //}
 
-    public View getCard_grid() {
-        return card_grid;
+    public ImageAdapter getImageAdapter() {
+        return imageAdapter;
+    }
+
+    public class ImageAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return placeToKart.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return placeToKart[position];
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ImageView imageView;
+            if (convertView == null){
+                imageView = new ImageView(context);
+                imageView.setLayoutParams(new GridView.LayoutParams(500, 500));
+
+                int desiredWidth = 200; // Dostosuj tę wartość do preferencji
+                int desiredHeight = 350; // Dostosuj tę wartość do preferencji
+                imageView.setLayoutParams(new GridView.LayoutParams(desiredWidth, desiredHeight));
+                imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                imageView.setPadding(16,16,16,16);
+            }else {
+                imageView = (ImageView) convertView;
+            }
+
+            imageView.setImageResource(placeToKart[position]);
+            return imageView;
+        }
     }
 
 }
+
+
