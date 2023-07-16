@@ -99,15 +99,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/linearLayout" />
-
-    <LinearLayout
-        android:id="@+id/ListPlayer"
-        android:layout_width="362dp"
-        android:layout_height="49dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2"></LinearLayout>
+    <HorizontalScrollView
+        android:id="@+id/horizonatalScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:id="@+id/ListPlayer"
+            android:layout_width="362dp"
+            android:layout_height="49dp"
+            android:orientation="horizontal"
+        ></LinearLayout>
+    </HorizontalScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

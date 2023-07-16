@@ -42,13 +42,9 @@ public class GameActivity extends AppCompatActivity {
         LinearLayout listPlayer = findViewById(R.id.ListPlayer);
         for (int i = 0; i < NamePlayersList.size(); i++) {
             Button buttonPlayer = new Button(this);
-            buttonPlayer.setTag(NamePlayersList.get(i));
+            //buttonPlayer.setTag(NamePlayersList.get(i));
             buttonPlayer.setText(NamePlayersList.get(i));
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(0, 0, 0, 0);
-            listPlayer.addView(buttonPlayer, layoutParams);
+            listPlayer.addView(buttonPlayer);
         }
 
         GridView gridView = (GridView) findViewById(R.id.gridview);
