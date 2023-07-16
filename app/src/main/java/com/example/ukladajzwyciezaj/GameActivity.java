@@ -21,21 +21,21 @@ public class GameActivity extends AppCompatActivity {
     Integer[] exchangeKart = new Integer[80];
     private ImageView chosen_imageView = null;
     Player player1, player2;
+    ArrayList<Player> Players = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Intent intent = getIntent();
         ArrayList<String> NamePlayersList = intent.getStringArrayListExtra("NamePlayers");
-        try {
-            player1 = new Player(this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        try {
-            player2 = new Player(this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+
+        for (int i=0; i<NamePlayersList.size();i++){
+            try {
+                player1 = new Player(this, NamePlayersList.get(i));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Players.add(player1);
         }
 
 
@@ -44,6 +44,19 @@ public class GameActivity extends AppCompatActivity {
             Button buttonPlayer = new Button(this);
             //buttonPlayer.setTag(NamePlayersList.get(i));
             buttonPlayer.setText(NamePlayersList.get(i));
+            buttonPlayer.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GridView gridView = (GridView) findViewById(R.id.gridview);
+                    String NamePlayer = (String) buttonPlayer.getText();
+                    for (Player elem : Players){
+                        if (elem.getName() == NamePlayer){
+                            gridView.setAdapter(elem.getImageAdapter());
+                        }
+                    }
+
+                }
+            });
             listPlayer.addView(buttonPlayer);
         }
 

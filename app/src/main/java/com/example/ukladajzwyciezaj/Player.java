@@ -25,13 +25,15 @@ public class Player {
     private Integer[] placeToKart = new Integer[80];
     private Context context;
     private ImageAdapter imageAdapter;
+    private String Name;
 
 
-    public Player(Context context) throws IOException {
+    public Player(Context context, String name) throws IOException {
         this.pileOfKart = new PileOfKart(context);
         this.positionKart = new HashMap<>();
         this.informationAttack = new ForwardingAttack();
         this.context = context;
+        this.Name = name;
         this.imageAdapter = new ImageAdapter();
         for (int j=0; j<placeToKart.length; j++){
             this.placeToKart[j] = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
@@ -63,12 +65,17 @@ public class Player {
         return pileOfKart;
     }
 
+
     public void setPileOfKart(PileOfKart pileOfKart) {
         this.pileOfKart = pileOfKart;
     }
     //public void RemoveKart(GridView gridView, int positionStart, int positionFinish){
 
     //}
+
+    public String getName() {
+        return Name;
+    }
 
     public ImageAdapter getImageAdapter() {
         return imageAdapter;
