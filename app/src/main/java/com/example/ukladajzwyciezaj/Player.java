@@ -77,6 +77,14 @@ public class Player {
         return Name;
     }
 
+    public Integer[] getPlaceToKart() {
+        return placeToKart;
+    }
+
+    public void setPlaceToKart(Integer[] placeToKart) {
+        this.placeToKart = placeToKart;
+    }
+
     public ImageAdapter getImageAdapter() {
         return imageAdapter;
     }
@@ -109,11 +117,10 @@ public class Player {
                 imageView.setLayoutParams(new GridView.LayoutParams(desiredWidth, desiredHeight));
                 imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 imageView.setPadding(16,16,16,16);
+                imageView.setImageResource(placeToKart[position]);
             }else {
                 imageView = (ImageView) convertView;
             }
-
-            imageView.setImageResource(placeToKart[position]);
             return imageView;
         }
     }

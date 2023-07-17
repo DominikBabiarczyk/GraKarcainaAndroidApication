@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
         Intent intent = getIntent();
         ArrayList<String> NamePlayersList = intent.getStringArrayListExtra("NamePlayers");
 
-        for (int i=0; i<NamePlayersList.size();i++){
+        for (int i=0; i<NamePlayersList.size(); i++){
             try {
                 player1 = new Player(this, NamePlayersList.get(i));
             } catch (IOException e) {
@@ -54,7 +55,6 @@ public class GameActivity extends AppCompatActivity {
                             gridView.setAdapter(elem.getImageAdapter());
                         }
                     }
-
                 }
             });
             listPlayer.addView(buttonPlayer);
@@ -71,11 +71,39 @@ public class GameActivity extends AppCompatActivity {
                     ImageView clickedImageView = (ImageView) v;
                     clickedImageView.setImageDrawable(chosen_imageView.getDrawable());
                     LinearLayout linearLayout1 = findViewById(R.id.linearLayout);
+                    //Player p = Players.get(0);
+                    //Integer[] z = p.getPlaceToKart();
                     linearLayout1.removeView(chosen_imageView);
                     chosen_imageView = null;
                 }
             }
         });
+
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        for (int j=0; j<3; j++){
+            //ImageView localView = game.getPileOfKart().getRandomKartToGame().getImageView();
+            //PileOfKart pileOfKart = game.getPileOfKart();
+            //ImageView localView = drawnCard.getImageView();
+            ImageView localView = new ImageView(this);
+            int resId = getResources().getIdentifier("kart_to_insite", "drawable", getPackageName());
+            localView.setImageResource(resId);
+            LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1);
+            params1.gravity = Gravity.CENTER;
+            params1.setMargins(15,15,15,15);
+            localView.setLayoutParams(params1);
+            localView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            localView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (v instanceof ImageView) {
+                        Toast.makeText(getBaseContext(),"Wybrano kartę do wstawienia", Toast.LENGTH_SHORT).show();
+                        chosen_imageView = (ImageView) v;
+                        v.setBackgroundResource(R.drawable.obramowanie);
+                    }
+                }
+            });
+            linearLayout.addView(localView);
+        }
     }
 
     public void OnclickButtonExxhance(View v){
@@ -95,4 +123,8 @@ public class GameActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 }
