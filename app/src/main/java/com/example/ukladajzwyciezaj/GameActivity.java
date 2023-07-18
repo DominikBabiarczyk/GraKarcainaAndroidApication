@@ -39,20 +39,25 @@ public class GameActivity extends AppCompatActivity {
             Players.add(player1);
         }
 
-
+        GridView gridView = (GridView) findViewById(R.id.gridview);
         LinearLayout listPlayer = findViewById(R.id.ListPlayer);
         for (int i = 0; i < NamePlayersList.size(); i++) {
             Button buttonPlayer = new Button(this);
             //buttonPlayer.setTag(NamePlayersList.get(i));
             buttonPlayer.setText(NamePlayersList.get(i));
             buttonPlayer.setOnClickListener(new View.OnClickListener() {
+                Player ActualPlayer = null;
                 @Override
                 public void onClick(View v) {
-                    GridView gridView = (GridView) findViewById(R.id.gridview);
+
+                    if (ActualPlayer != null){
+
+                    }
                     String NamePlayer = (String) buttonPlayer.getText();
                     for (Player elem : Players){
                         if (elem.getName() == NamePlayer){
                             gridView.setAdapter(elem.getImageAdapter());
+                            ActualPlayer = elem;
                         }
                     }
                 }
@@ -60,9 +65,6 @@ public class GameActivity extends AppCompatActivity {
             listPlayer.addView(buttonPlayer);
         }
 
-        GridView gridView = (GridView) findViewById(R.id.gridview);
-
-        gridView.setAdapter(player1.getImageAdapter());
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
             public  void onItemClick(AdapterView parent, View v, int position, long id){
