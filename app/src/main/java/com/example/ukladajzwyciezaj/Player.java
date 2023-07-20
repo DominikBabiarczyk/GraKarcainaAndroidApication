@@ -89,6 +89,10 @@ public class Player {
         return imageAdapter;
     }
 
+    public void setImageAdapter(ImageAdapter imageAdapter) {
+        this.imageAdapter = imageAdapter;
+    }
+
     public class ImageAdapter extends BaseAdapter {
         @Override
         public int getCount() {

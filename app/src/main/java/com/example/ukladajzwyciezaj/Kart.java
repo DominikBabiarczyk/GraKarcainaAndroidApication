@@ -8,9 +8,11 @@ import java.util.HashMap;
 public class Kart {
     private HashMap<SideAttack, InfluenceKart> ValueAttack;
     private ImageView imageView;
+    int ImageResource;
 
-    public Kart(InfluenceKart left, InfluenceKart right, InfluenceKart top, InfluenceKart bottom, ImageView imageView){
+    public Kart(InfluenceKart left, InfluenceKart right, InfluenceKart top, InfluenceKart bottom, ImageView imageView, int imageResource){
         this.ValueAttack = new HashMap<>();
+        this.ImageResource = imageResource;
         this.ValueAttack.put(SideAttack.RIGHT, right);
         this.ValueAttack.put(SideAttack.LEFT, left);
         this.ValueAttack.put(SideAttack.TOP, top);

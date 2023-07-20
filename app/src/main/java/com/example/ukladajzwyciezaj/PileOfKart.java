@@ -39,7 +39,7 @@ public class PileOfKart{
             KartView.setImageResource(resId);
 
             Kart kart = new Kart(InfluenceKart.valueOf(actualValue[3]),InfluenceKart.valueOf(actualValue[1]),
-                    InfluenceKart.valueOf(actualValue[2]), InfluenceKart.valueOf(actualValue[4]), KartView);
+                    InfluenceKart.valueOf(actualValue[2]), InfluenceKart.valueOf(actualValue[4]), KartView, resId);
 
             this.setAllKart.add(kart);
         }
