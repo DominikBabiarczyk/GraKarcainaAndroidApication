@@ -19,10 +19,11 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
     private ImageView chosen_imageView = null;
+    private int resIDchosen_imageView;
     Player player1, player2;
 
     Game game;
-    private int resID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
                     clickedImageView.setImageDrawable(chosen_imageView.getDrawable());
                     LinearLayout linearLayout1 = findViewById(R.id.linearLayout);
                     Integer[] placeToKart = game.getPlayers().get(0).getPlaceToKart();
-                    placeToKart[position] = resID;
+                    placeToKart[position] = resIDchosen_imageView;
                     game.getPlayers().get(0).setPlaceToKart(placeToKart);
                     //Player p = Players.get(0);
                     //Integer[] z = p.getPlaceToKart();
@@ -87,13 +88,8 @@ public class GameActivity extends AppCompatActivity {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         for (int j=0; j<3; j++){
             ImageView localView = new ImageView(this);
-            localView = game.getPileOfKart().getRandomKartToGame().getImageView();
-            //PileOfKart pileOfKart = game.getPileOfKart();
-            //ImageView localView = drawnCard.getImageView();
-            ImageView localView2 = new ImageView(this);
-            int resId = getResources().getIdentifier("kart_to_insite", "drawable", getPackageName());
-            localView.setImageResource(resId);
-            resID = resId;
+            int localViewresid = game.getPileOfKart().getRandomKartToGame().getImageResource();
+            localView.setImageResource(localViewresid);
             LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1);
             params1.gravity = Gravity.CENTER;
             params1.setMargins(15,15,15,15);

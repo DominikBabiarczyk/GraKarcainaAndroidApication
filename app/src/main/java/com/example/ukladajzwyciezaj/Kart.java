@@ -28,6 +28,14 @@ public class Kart {
         ValueAttack = valueAttack;
     }
 
+    public int getImageResource() {
+        return ImageResource;
+    }
+
+    public void setImageResource(int imageResource) {
+        ImageResource = imageResource;
+    }
+
     public void setImageView(ImageView imageView) {
         this.imageView = imageView;
     }

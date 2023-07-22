@@ -23,6 +23,7 @@ public class Player {
     protected HashMap<Integer, Kart> positionKart;
 
     private Integer[] placeToKart = new Integer[80];
+    private ImageView[] placeToKartImageVIew = new ImageView[80];
     private Context context;
     private ImageAdapter imageAdapter;
     private String Name;
@@ -37,6 +38,12 @@ public class Player {
         this.imageAdapter = new ImageAdapter();
         for (int j=0; j<placeToKart.length; j++){
             this.placeToKart[j] = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
+        }
+        for (int j=0; j<placeToKart.length; j++){
+            ImageView imageViewToInsert = new ImageView(context);
+            int res = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
+            imageViewToInsert.setImageResource(res);
+            this.placeToKartImageVIew[j] = imageViewToInsert;
         }
 
     }
@@ -113,7 +120,7 @@ public class Player {
         public View getView(int position, View convertView, ViewGroup parent) {
             ImageView imageView;
             if (convertView == null){
-                imageView = new ImageView(context);
+                imageView = placeToKartImageVIew[position];
                 imageView.setLayoutParams(new GridView.LayoutParams(500, 500));
 
                 int desiredWidth = 200; // Dostosuj tę wartość do preferencji
@@ -121,7 +128,8 @@ public class Player {
                 imageView.setLayoutParams(new GridView.LayoutParams(desiredWidth, desiredHeight));
                 imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 imageView.setPadding(16,16,16,16);
-                imageView.setImageResource(placeToKart[position]);
+                //imageView.setImageResource(placeToKart[position]);
+                //imageView = placeToKartImageVIew[position];
             }else {
                 imageView = (ImageView) convertView;
             }
