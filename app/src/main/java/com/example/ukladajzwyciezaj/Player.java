@@ -21,8 +21,6 @@ public class Player {
     private PileOfKart pileOfKart;
     private ForwardingAttack informationAttack;
     protected HashMap<Integer, Kart> positionKart;
-
-    private Integer[] placeToKart = new Integer[80];
     private ImageView[] placeToKartImageVIew = new ImageView[80];
     private Context context;
     private ImageAdapter imageAdapter;
@@ -36,15 +34,13 @@ public class Player {
         this.context = context;
         this.Name = name;
         this.imageAdapter = new ImageAdapter();
-        for (int j=0; j<placeToKart.length; j++){
-            this.placeToKart[j] = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
-        }
-        for (int j=0; j<placeToKart.length; j++){
+        for (int j=0; j<placeToKartImageVIew.length; j++){
             ImageView imageViewToInsert = new ImageView(context);
             int res = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
             imageViewToInsert.setImageResource(res);
             this.placeToKartImageVIew[j] = imageViewToInsert;
         }
+
 
     }
 
@@ -84,14 +80,6 @@ public class Player {
         return Name;
     }
 
-    public Integer[] getPlaceToKart() {
-        return placeToKart;
-    }
-
-    public void setPlaceToKart(Integer[] placeToKart) {
-        this.placeToKart = placeToKart;
-    }
-
     public ImageAdapter getImageAdapter() {
         return imageAdapter;
     }
@@ -103,12 +91,12 @@ public class Player {
     public class ImageAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return placeToKart.length;
+            return placeToKartImageVIew.length;
         }
 
         @Override
         public Object getItem(int position) {
-            return placeToKart[position];
+            return placeToKartImageVIew[position];
         }
 
         @Override

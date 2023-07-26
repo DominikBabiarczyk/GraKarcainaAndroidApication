@@ -18,6 +18,7 @@ public class Kart {
         this.ValueAttack.put(SideAttack.TOP, top);
         this.ValueAttack.put(SideAttack.BOTTOM, bottom);
         this.imageView = imageView;
+
     }
 
     public HashMap<SideAttack, InfluenceKart> getValueAttack() {

@@ -66,7 +66,7 @@ public class PileOfKart{
         return this.setAllKart.isEmpty();
     }
 
-    public int quantityKart(){
+    public int size(){
         return this.setAllKart.size();
     }
 

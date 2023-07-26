@@ -19,10 +19,8 @@ import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
     private ImageView chosen_imageView = null;
-    private int resIDchosen_imageView;
-    Player player1, player2;
-
     Game game;
+    private Player CurrentPlayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +57,7 @@ public class GameActivity extends AppCompatActivity {
                             adapter = elem.getImageAdapter();
                             gridView.setAdapter(adapter);
                             ActualPlayer = elem;
+                            CurrentPlayer = elem;
                         }
                     }
                 }
@@ -74,11 +73,6 @@ public class GameActivity extends AppCompatActivity {
                     ImageView clickedImageView = (ImageView) v;
                     clickedImageView.setImageDrawable(chosen_imageView.getDrawable());
                     LinearLayout linearLayout1 = findViewById(R.id.linearLayout);
-                    Integer[] placeToKart = game.getPlayers().get(0).getPlaceToKart();
-                    placeToKart[position] = resIDchosen_imageView;
-                    game.getPlayers().get(0).setPlaceToKart(placeToKart);
-                    //Player p = Players.get(0);
-                    //Integer[] z = p.getPlaceToKart();
                     linearLayout1.removeView(chosen_imageView);
                     chosen_imageView = null;
                 }
@@ -112,10 +106,14 @@ public class GameActivity extends AppCompatActivity {
     public void completeCartInHeand(View v){
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         int Childcount = linearLayout.getChildCount();
-        if (Childcount < 2){
+        if (Childcount < 2 ) {
             while (Childcount < 3) {
+                if (game.getPileOfKart().size() < 1){
+                    Toast.makeText(getBaseContext(),"Koniec kart w tali", Toast.LENGTH_SHORT).show();
+                    break;
+                }
                 ImageView localView = new ImageView(this);
-                int resId = getResources().getIdentifier("kart_to_insite", "drawable", getPackageName());
+                int resId = game.getPileOfKart().getRandomKartToGame().getImageResource();
                 localView.setImageResource(resId);
                 LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
                 params1.gravity = Gravity.CENTER;
