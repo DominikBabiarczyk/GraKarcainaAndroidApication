@@ -9,8 +9,8 @@ public class Game {
     private PileOfKart pileOfKart;
     ArrayList<Player> Players;
 
-    public Game(Context context, ArrayList<String> NamePlayersList) throws IOException {
-        this.pileOfKart = new PileOfKart(context);
+    public Game(Context context,GameActivity gameActivity, ArrayList<String> NamePlayersList) throws IOException {
+        this.pileOfKart = new PileOfKart(context, gameActivity);
         this.Players = new ArrayList<>();
         Player player1;
         for (int i=0; i<NamePlayersList.size(); i++){

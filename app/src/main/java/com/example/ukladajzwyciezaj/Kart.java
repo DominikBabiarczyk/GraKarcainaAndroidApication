@@ -1,6 +1,7 @@
 package com.example.ukladajzwyciezaj;
 
 import android.provider.ContactsContract;
+import android.view.View;
 import android.widget.ImageView;
 import com.example.ukladajzwyciezaj.SideAttack;
 import java.util.HashMap;
@@ -18,7 +19,11 @@ public class Kart {
         this.ValueAttack.put(SideAttack.TOP, top);
         this.ValueAttack.put(SideAttack.BOTTOM, bottom);
         this.imageView = imageView;
+    }
 
+    public Kart setOnClickListener(View.OnClickListener listener) {
+        imageView.setOnClickListener(listener);
+        return this;
     }
 
     public HashMap<SideAttack, InfluenceKart> getValueAttack() {

@@ -18,9 +18,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
-    private ImageView chosen_imageView = null;
+    Kart chosen_kart = null;
     Game game;
     private Player CurrentPlayer = null;
+
+    public Kart getChosen_kart() {
+        return chosen_kart;
+    }
+
+    public void setChosen_kart(Kart chosen_kart) {
+        this.chosen_kart = chosen_kart;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +38,12 @@ public class GameActivity extends AppCompatActivity {
         ArrayList<String> NamePlayersList = intent.getStringArrayListExtra("NamePlayers");
 
         try {
-            game = new Game(this, NamePlayersList);
+            game = new Game(this,this, NamePlayersList);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        GridView gridView = (GridView) findViewById(R.id.gridview);
+        GridView gridView = findViewById(R.id.gridview);
         LinearLayout listPlayer = findViewById(R.id.ListPlayer);
 
         for (int i = 0; i < NamePlayersList.size(); i++) {
@@ -54,8 +62,7 @@ public class GameActivity extends AppCompatActivity {
                     String NamePlayer = (String) buttonPlayer.getText();
                     for (Player elem : game.getPlayers()){
                         if (elem.getName() == NamePlayer){
-                            adapter = elem.getImageAdapter();
-                            gridView.setAdapter(adapter);
+                            gridView.setAdapter(elem.getImageAdapter());
                             ActualPlayer = elem;
                             CurrentPlayer = elem;
                         }
@@ -69,36 +76,22 @@ public class GameActivity extends AppCompatActivity {
         {
             public  void onItemClick(AdapterView parent, View v, int position, long id){
                 Toast.makeText(getBaseContext(),"Wybrano kartę nr"+(position+1), Toast.LENGTH_SHORT).show();
-                if (chosen_imageView != null) {
+                if (chosen_kart != null) {
                     ImageView clickedImageView = (ImageView) v;
+                    ImageView chosen_imageView = chosen_kart.getImageView();
                     clickedImageView.setImageDrawable(chosen_imageView.getDrawable());
                     LinearLayout linearLayout1 = findViewById(R.id.linearLayout);
                     linearLayout1.removeView(chosen_imageView);
-                    chosen_imageView = null;
+                    CurrentPlayer.EnterCardToPlay(gridView, chosen_kart,position);
+                    chosen_kart = null;
                 }
             }
         });
 
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+
         for (int j=0; j<3; j++){
-            ImageView localView = new ImageView(this);
-            int localViewresid = game.getPileOfKart().getRandomKartToGame().getImageResource();
-            localView.setImageResource(localViewresid);
-            LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT,1);
-            params1.gravity = Gravity.CENTER;
-            params1.setMargins(15,15,15,15);
-            localView.setLayoutParams(params1);
-            localView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-            localView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (v instanceof ImageView) {
-                        Toast.makeText(getBaseContext(),"Wybrano kartę do wstawienia", Toast.LENGTH_SHORT).show();
-                        chosen_imageView = (ImageView) v;
-                        v.setBackgroundResource(R.drawable.obramowanie);
-                    }
-                }
-            });
+            ImageView localView = game.getPileOfKart().getRandomKartToGame().getImageView();
             linearLayout.addView(localView);
         }
     }
@@ -112,27 +105,9 @@ public class GameActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(),"Koniec kart w tali", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                ImageView localView = new ImageView(this);
-                int resId = game.getPileOfKart().getRandomKartToGame().getImageResource();
-                localView.setImageResource(resId);
-                LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
-                params1.gravity = Gravity.CENTER;
-                params1.setMargins(15, 15, 15, 15);
-                localView.setLayoutParams(params1);
-
-                localView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+                ImageView localView = game.getPileOfKart().getRandomKartToGame().getImageView();
                 linearLayout.addView(localView);
                 Childcount = linearLayout.getChildCount();
-                localView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (v instanceof ImageView) {
-                            Toast.makeText(getBaseContext(),"Wybrano kartę do wstawienia", Toast.LENGTH_SHORT).show();
-                            chosen_imageView = (ImageView) v;
-                            v.setBackgroundResource(R.drawable.obramowanie);
-                        }
-                    }
-                });
             }
         }else{
             Toast.makeText(getBaseContext(),"Nie możesz uzupełnić kart", Toast.LENGTH_SHORT).show();
@@ -140,7 +115,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void OnclickButtonExxhance(View v){
-
+        Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();
     }
 
 

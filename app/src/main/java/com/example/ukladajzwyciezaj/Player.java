@@ -28,7 +28,7 @@ public class Player {
 
 
     public Player(Context context, String name) throws IOException {
-        this.pileOfKart = new PileOfKart(context);
+        //this.pileOfKart = new PileOfKart(context);
         this.positionKart = new HashMap<>();
         this.informationAttack = new ForwardingAttack();
         this.context = context;
