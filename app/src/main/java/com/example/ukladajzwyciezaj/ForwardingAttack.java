@@ -19,15 +19,19 @@ public class ForwardingAttack {
         switch (side){
             case TOP:
                 TopAttack.put(position, powerAttack);
+                break;
 
             case LEFT:
                 LeftAttack.put(position, powerAttack);
+                break;
 
             case RIGHT:
                 RightAttack.put(position, powerAttack);
+                break;
 
             case BOTTOM:
                 BottomAttack.put(position, powerAttack);
+                break;
         }
     }
 
@@ -35,15 +39,19 @@ public class ForwardingAttack {
         switch (side){
             case TOP:
                 TopAttack.remove(position);
+                break;
 
             case LEFT:
                 LeftAttack.remove(position);
+                break;
 
             case RIGHT:
                 RightAttack.remove(position);
+                break;
 
             case BOTTOM:
                 BottomAttack.remove(position);
+                break;
         }
     }
 
