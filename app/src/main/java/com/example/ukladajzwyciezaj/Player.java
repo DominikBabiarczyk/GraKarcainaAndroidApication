@@ -134,7 +134,7 @@ public class Player {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ImageView imageView;
-            if (convertView == null){
+            //if (convertView == null){
                 imageView = placeToKartImageVIew[position];
                 imageView.setLayoutParams(new GridView.LayoutParams(500, 500));
 
@@ -143,11 +143,12 @@ public class Player {
                 imageView.setLayoutParams(new GridView.LayoutParams(desiredWidth, desiredHeight));
                 imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
                 imageView.setPadding(16,16,16,16);
-                //imageView.setImageResource(placeToKart[position]);
+                //
                 //imageView = placeToKartImageVIew[position];
-            }else {
-                imageView = (ImageView) convertView;
-            }
+            //}else {
+                //imageView = (ImageView) convertView;
+            //}
+            //imageView.setImageDrawable(placeToKartImageVIew[position].getDrawable());
             return imageView;
         }
     }
