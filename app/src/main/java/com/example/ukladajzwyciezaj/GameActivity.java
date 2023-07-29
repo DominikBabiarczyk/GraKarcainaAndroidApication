@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -84,8 +85,14 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         });
+
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        TextView textView = findViewById(R.id.CurrentPlayer);
+        this.CurrentPlayer = game.getNextPlayer();
         this.CurrentPlayer.SetViewLinearlayout(linearLayout);
+        textView.setText(this.CurrentPlayer.getName());
+        //LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        //this.CurrentPlayer.SetViewLinearlayout(linearLayout);
 
         /*
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
@@ -123,14 +130,18 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    public void OnclickButtonExxhance(View v){
-        Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();
+    public void OnclickButtonEndTurn(View v){
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        linearLayout.removeAllViews();
+        //Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();
     }
 
     public void OnClickButtonNextPlayer(View v){
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        TextView textView = findViewById(R.id.CurrentPlayer);
         this.CurrentPlayer = game.getNextPlayer();
         this.CurrentPlayer.SetViewLinearlayout(linearLayout);
+        textView.setText(this.CurrentPlayer.getName());
     }
 
 
