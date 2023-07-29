@@ -30,26 +30,27 @@ public class Player {
     private ArrayList<Kart> KartInHeand;
 
 
-    public Player(Context context, String name) throws IOException {
+    public Player(Context context, String name, Game game) throws IOException {
         //this.pileOfKart = new PileOfKart(context);
         this.positionKart = new HashMap<>();
         this.informationAttack = new ForwardingAttack();
         this.context = context;
         this.Name = name;
         this.imageAdapter = new ImageAdapter();
+        this.KartInHeand = new ArrayList<>();
         for (int j=0; j<placeToKartImageVIew.length; j++){
             ImageView imageViewToInsert = new ImageView(context);
             int res = this.context.getResources().getIdentifier("grafika_karty","drawable",this.context.getPackageName());
             imageViewToInsert.setImageResource(res);
             this.placeToKartImageVIew[j] = imageViewToInsert;
         }
+        this.completeCartInHeand(game);
     }
     public void completeCartInHeand(Game game){
         //LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         int Childcount = this.KartInHeand.size();
         if (Childcount < 2 ) {
             while (Childcount < 3) {
-
                 if (game.getPileOfKart().size() < 1){
                     Toast.makeText(context,"Koniec kart w tali", Toast.LENGTH_SHORT).show();
                     break;

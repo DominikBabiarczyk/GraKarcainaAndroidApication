@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="completeCartInHeand"
-        android:text="Button"
+        android:text="complet karts"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout" />
@@ -103,7 +103,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="OnclickButtonExxhance"
-        android:text="Button"
+        android:text="test"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/linearLayout"
         app:layout_constraintTop_toTopOf="@+id/linearLayout" />
@@ -123,6 +123,17 @@
             android:layout_height="49dp"
             android:orientation="horizontal"></LinearLayout>
     </HorizontalScrollView>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="OnClickButtonNextPlayer"
+        android:text="next player"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

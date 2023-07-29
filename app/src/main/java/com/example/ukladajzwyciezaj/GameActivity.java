@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class GameActivity extends AppCompatActivity {
     Kart chosen_kart = null;
     Game game;
+    private Player CurrentVIewPlayer = null;
     private Player CurrentPlayer = null;
 
     public Kart getChosen_kart() {
@@ -51,20 +52,16 @@ public class GameActivity extends AppCompatActivity {
             //buttonPlayer.setTag(NamePlayersList.get(i));
             buttonPlayer.setText(NamePlayersList.get(i));
             buttonPlayer.setOnClickListener(new View.OnClickListener() {
-                Player ActualPlayer = null;
-                Player.ImageAdapter adapter = null;
+                //Player ActualPlayer = null;
                 @Override
                 public void onClick(View v) {
 
-                    if (ActualPlayer != null){
-                        ActualPlayer.setImageAdapter(adapter);
-                    }
                     String NamePlayer = (String) buttonPlayer.getText();
                     for (Player elem : game.getPlayers()){
                         if (elem.getName() == NamePlayer){
                             gridView.setAdapter(elem.getImageAdapter());
-                            ActualPlayer = elem;
-                            CurrentPlayer = elem;
+                            //ActualPlayer = elem;
+                            CurrentVIewPlayer = elem;
                         }
                     }
                 }
@@ -82,18 +79,23 @@ public class GameActivity extends AppCompatActivity {
                     clickedImageView.setImageDrawable(chosen_imageView.getDrawable());
                     LinearLayout linearLayout1 = findViewById(R.id.linearLayout);
                     linearLayout1.removeView(chosen_imageView);
-                    CurrentPlayer.EnterCardToPlay(gridView, chosen_kart,position);
+                    CurrentVIewPlayer.EnterCardToPlay(gridView, chosen_kart,position);
                     chosen_kart = null;
                 }
             }
         });
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        this.CurrentPlayer.SetViewLinearlayout(linearLayout);
 
+        /*
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
 
         for (int j=0; j<3; j++){
             ImageView localView = game.getPileOfKart().getRandomKartToGame().getImageView();
             linearLayout.addView(localView);
         }
+
+         */
     }
 
     public void completeCartInHeand(View v){
@@ -113,22 +115,23 @@ public class GameActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getBaseContext(),"Nie możesz uzupełnić kart", Toast.LENGTH_SHORT).show();
         }
-
          */
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        if(CurrentPlayer!=null) {
-            CurrentPlayer.completeCartInHeand(game);
-            //CurrentPlayer.SetViewLinearlayout(linearLayout);
+        if(CurrentVIewPlayer!=null) {
+            CurrentVIewPlayer.completeCartInHeand(game);
+            CurrentVIewPlayer.SetViewLinearlayout(linearLayout);
         }
     }
-
-
 
     public void OnclickButtonExxhance(View v){
         Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();
     }
 
-
+    public void OnClickButtonNextPlayer(View v){
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        this.CurrentPlayer = game.getNextPlayer();
+        this.CurrentPlayer.SetViewLinearlayout(linearLayout);
+    }
 
 
 }
