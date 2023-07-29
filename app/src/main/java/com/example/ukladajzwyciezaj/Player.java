@@ -3,6 +3,7 @@ package com.example.ukladajzwyciezaj;
 import android.content.Context;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.ukladajzwyciezaj.Kart;
 import com.example.ukladajzwyciezaj.PileOfKart;
@@ -25,6 +27,7 @@ public class Player {
     private Context context;
     private ImageAdapter imageAdapter;
     private String Name;
+    private ArrayList<Kart> KartInHeand;
 
 
     public Player(Context context, String name) throws IOException {
@@ -40,8 +43,31 @@ public class Player {
             imageViewToInsert.setImageResource(res);
             this.placeToKartImageVIew[j] = imageViewToInsert;
         }
+    }
+    public void completeCartInHeand(Game game){
+        //LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        int Childcount = this.KartInHeand.size();
+        if (Childcount < 2 ) {
+            while (Childcount < 3) {
 
+                if (game.getPileOfKart().size() < 1){
+                    Toast.makeText(context,"Koniec kart w tali", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                Kart kart = game.getPileOfKart().getRandomKartToGame();
+                this.KartInHeand.add(kart);
+                Childcount = this.KartInHeand.size();
+            }
+        }else{
+            Toast.makeText(context,"Nie możesz uzupełnić kart", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    public void SetViewLinearlayout(LinearLayout linearLayout){
+        linearLayout.removeAllViews();
+        for(int i=0; i<this.KartInHeand.size(); i++){
+            linearLayout.addView(this.KartInHeand.get(i).getImageView());
+        }
     }
 
     public void EnterCardToPlay(GridView gridView, Kart kart, Integer position){

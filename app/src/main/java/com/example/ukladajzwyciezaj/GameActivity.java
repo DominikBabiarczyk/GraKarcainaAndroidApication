@@ -97,6 +97,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void completeCartInHeand(View v){
+        /*
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         int Childcount = linearLayout.getChildCount();
         if (Childcount < 2 ) {
@@ -112,7 +113,16 @@ public class GameActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getBaseContext(),"Nie możesz uzupełnić kart", Toast.LENGTH_SHORT).show();
         }
+
+         */
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        if(CurrentPlayer!=null) {
+            CurrentPlayer.completeCartInHeand(game);
+            //CurrentPlayer.SetViewLinearlayout(linearLayout);
+        }
     }
+
+
 
     public void OnclickButtonExxhance(View v){
         Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();
