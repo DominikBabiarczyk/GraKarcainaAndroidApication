@@ -49,5 +49,9 @@ public class Game {
         return this.Players.get(this.CurrentPlayerIndex);
     }
 
+    public void Buttle(){
+        for (Player elem : this.Players){
 
+        }
+    }
 }
