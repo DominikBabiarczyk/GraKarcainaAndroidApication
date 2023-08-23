@@ -115,6 +115,10 @@ public class Player {
         this.imageAdapter = imageAdapter;
     }
 
+    public ForwardingAttack getInformationAttack() {
+        return informationAttack;
+    }
+
     public class ImageAdapter extends BaseAdapter {
         @Override
         public int getCount() {

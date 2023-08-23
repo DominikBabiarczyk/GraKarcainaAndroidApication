@@ -1,36 +1,43 @@
 package com.example.ukladajzwyciezaj;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ForwardingAttack {
-    private HashMap<Integer, InfluenceKart> RightAttack;
-    private HashMap<Integer, InfluenceKart> LeftAttack;
-    private HashMap<Integer, InfluenceKart> TopAttack;
-    private HashMap<Integer, InfluenceKart> BottomAttack;
+
+    private ArrayList<HashMap<Integer, InfluenceKart>> setSideAttack;
+
+    public ArrayList<HashMap<Integer, InfluenceKart>> getSetSideAttack() {
+        return setSideAttack;
+    }
 
     public ForwardingAttack(){
-        this.BottomAttack = new HashMap<>();
-        this.LeftAttack = new HashMap<>();
-        this.TopAttack = new HashMap<>();
-        this.RightAttack = new HashMap<>();
+        HashMap<Integer, InfluenceKart> RightAttack = new HashMap<>();
+        HashMap<Integer, InfluenceKart> LeftAttack = new HashMap<>();
+        HashMap<Integer, InfluenceKart> TopAttack = new HashMap<>();
+        HashMap<Integer, InfluenceKart> BottomAttack = new HashMap<>();
+        this.setSideAttack.add(RightAttack);
+        this.setSideAttack.add(LeftAttack);
+        this.setSideAttack.add(TopAttack);
+        this.setSideAttack.add(BottomAttack);
     }
 
     public void SaveAttack(InfluenceKart powerAttack, int position, SideAttack side){
         switch (side){
             case TOP:
-                TopAttack.put(position, powerAttack);
+                setSideAttack.get(2).put(position, powerAttack);
                 break;
 
             case LEFT:
-                LeftAttack.put(position, powerAttack);
+                setSideAttack.get(1).put(position, powerAttack);
                 break;
 
             case RIGHT:
-                RightAttack.put(position, powerAttack);
+                setSideAttack.get(0).put(position, powerAttack);
                 break;
 
             case BOTTOM:
-                BottomAttack.put(position, powerAttack);
+                setSideAttack.get(3).put(position, powerAttack);
                 break;
         }
     }
@@ -38,19 +45,19 @@ public class ForwardingAttack {
     public void RemoveAttack(int position, SideAttack side){
         switch (side){
             case TOP:
-                TopAttack.remove(position);
+                setSideAttack.get(2).remove(position);
                 break;
 
             case LEFT:
-                LeftAttack.remove(position);
+                setSideAttack.get(1).remove(position);
                 break;
 
             case RIGHT:
-                RightAttack.remove(position);
+                setSideAttack.get(0).remove(position);
                 break;
 
             case BOTTOM:
-                BottomAttack.remove(position);
+                setSideAttack.get(3).remove(position);
                 break;
         }
     }

@@ -4,6 +4,8 @@ import android.content.Context;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Game {
     private PileOfKart pileOfKart;
@@ -50,8 +52,10 @@ public class Game {
     }
 
     public void Buttle(){
-        for (Player elem : this.Players){
-
+        for (Player player : this.Players){
+            for (HashMap<Integer, InfluenceKart> sideAttack : player.getInformationAttack().getSetSideAttack()){
+                for ()
+            }
         }
     }
 }
