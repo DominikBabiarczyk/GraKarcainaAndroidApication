@@ -1,5 +1,6 @@
 package com.example.ukladajzwyciezaj;
 
+import android.app.Activity;
 import android.content.Context;
 
 import java.io.IOException;
@@ -118,9 +119,10 @@ public class Player {
 
     }
 
-    public void DeleteKart(GridView gridView, int position){
+    public void DeleteKart(int position){
         this.positionKart.remove(position);
-        int numCol = gridView.getNumColumns();
+        GridView gridView1 = ((Activity) context).findViewById(R.id.gridview);
+        int numCol = gridView1.getNumColumns();
         this.informationAttack.RemoveAttack(position-1, SideAttack.LEFT);
         this.informationAttack.RemoveAttack(position+1, SideAttack.RIGHT);
         this.informationAttack.RemoveAttack(position+numCol, SideAttack.BOTTOM);

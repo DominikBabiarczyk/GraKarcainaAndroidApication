@@ -1,5 +1,6 @@
 package com.example.ukladajzwyciezaj;
 
+import android.app.Activity;
 import android.content.Context;
 import android.widget.GridView;
 
@@ -72,16 +73,33 @@ public class Game {
                         }
                         Kart attackKart = player.getPositionKart().get(entry.getKey());
                         SideAttack SideToDefense = helpMetod.getSideToCheckDefense(player.getContext(), i);
-                        if ((entry.getValue() == powerAttack) && (attackKart.getValueAttack().get(SideToDefense) != InfluenceKart.DEFENSE)){
-                            
-                            player.DeleteKart(GameActivity.);
+                        if ((entry.getValue() == powerAttack) && (attackKart.getValueAttack().get(SideToDefense) != InfluenceKart.DEFENSE) ){
                             Pair<Player, Integer> playerFiled = new Pair<>(player, entry.getKey());
                             kartsToBeRemoved.add(playerFiled);
                         }
                     }
+                    for (Pair<Player, Integer> ToRemove : kartsToBeRemoved){
+                        ToRemove.getFirst().DeleteKart(ToRemove.getSecond());
+                    }
                 }
             }
         }
+        return kartsToBeRemoved;
+    }
+
+    public ArrayList<Pair<Player, Integer>> Buttlev2(){
+        ArrayList<Pair<Player, Integer>> kartsToBeRemoved = new ArrayList<>();
+        ArrayList<InfluenceKart> attacks = new ArrayList<>(Arrays.asList(InfluenceKart.TRIPLE_ATTACK, InfluenceKart.DOUBLE_ATTACK, InfluenceKart.ATTACK));
+        for (Player player : this.Players){
+            HashMap<Integer, Kart> positionKart = player.getPositionKart();
+            for (Map.Entry<Integer, Kart> entry : positionKart.entrySet()) {
+                if (!player.getPositionKart().containsKey(entry.getKey())){
+                    continue;
+                }
+
+                }
+            }
+
         return kartsToBeRemoved;
     }
 
