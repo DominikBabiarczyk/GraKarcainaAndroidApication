@@ -18,6 +18,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import kotlin.Pair;
+
 public class GameActivity extends AppCompatActivity {
     Kart chosen_kart = null;
     Game game;
@@ -131,7 +133,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void OnclickButtonEndTurn(View v){
-        ArrayList<Integer> a = game.Buttle();
+        ArrayList<Pair<Player, Integer>> a = game.Buttle();
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.removeAllViews();
         //Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();

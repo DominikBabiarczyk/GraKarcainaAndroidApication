@@ -1,6 +1,7 @@
 package com.example.ukladajzwyciezaj;
 
 import android.content.Context;
+import android.widget.GridView;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,11 +10,14 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
+import kotlin.Pair;
+
 
 public class Game {
     private PileOfKart pileOfKart;
     ArrayList<Player> Players;
     private int CurrentPlayerIndex = Integer.MAX_VALUE;
+    private Context context;
 
     public Game(Context context, GameActivity gameActivity, ArrayList<String> NamePlayersList) throws IOException {
         this.pileOfKart = new PileOfKart(context, gameActivity);
@@ -28,6 +32,7 @@ public class Game {
             this.Players.add(player1);
         }
         this.CurrentPlayerIndex = 0;
+        this.context = context;
     }
 
     public PileOfKart getPileOfKart() {
@@ -54,8 +59,8 @@ public class Game {
         return this.Players.get(this.CurrentPlayerIndex);
     }
 
-    public ArrayList<Integer> Buttle(){
-        ArrayList<Integer> kartsToBeRemoved = new ArrayList<>();
+    public ArrayList<Pair<Player, Integer>> Buttle(){
+        ArrayList<Pair<Player, Integer>> kartsToBeRemoved = new ArrayList<>();
         ArrayList<InfluenceKart> attacks = new ArrayList<>(Arrays.asList(InfluenceKart.TRIPLE_ATTACK, InfluenceKart.DOUBLE_ATTACK, InfluenceKart.ATTACK));
         for (Player player : this.Players){
             for (Integer i=0; i<4; i++){
@@ -68,7 +73,10 @@ public class Game {
                         Kart attackKart = player.getPositionKart().get(entry.getKey());
                         SideAttack SideToDefense = helpMetod.getSideToCheckDefense(player.getContext(), i);
                         if ((entry.getValue() == powerAttack) && (attackKart.getValueAttack().get(SideToDefense) != InfluenceKart.DEFENSE)){
-                            kartsToBeRemoved.add(entry.getKey());
+                            
+                            player.DeleteKart(GameActivity.);
+                            Pair<Player, Integer> playerFiled = new Pair<>(player, entry.getKey());
+                            kartsToBeRemoved.add(playerFiled);
                         }
                     }
                 }
