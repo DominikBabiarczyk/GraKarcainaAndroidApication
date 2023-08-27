@@ -94,5 +94,17 @@ public class helpMetod {
         return bigDotTextVIew;
     }
 
+    public static SideAttack getSideToCheckDefense(Context context, Integer integer){
+        if (integer == 0){
+            return SideAttack.LEFT;
+        } else if (integer == 1) {
+            return SideAttack.RIGHT;
+        } else if (integer == 2) {
+            return SideAttack.BOTTOM;
+        } else {
+            return SideAttack.TOP;
+        }
+    }
+
 
 }

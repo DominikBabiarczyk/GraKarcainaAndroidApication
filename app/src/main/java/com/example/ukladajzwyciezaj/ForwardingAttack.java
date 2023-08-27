@@ -12,6 +12,7 @@ public class ForwardingAttack {
     }
 
     public ForwardingAttack(){
+        this.setSideAttack = new ArrayList<>();
         HashMap<Integer, InfluenceKart> RightAttack = new HashMap<>();
         HashMap<Integer, InfluenceKart> LeftAttack = new HashMap<>();
         HashMap<Integer, InfluenceKart> TopAttack = new HashMap<>();

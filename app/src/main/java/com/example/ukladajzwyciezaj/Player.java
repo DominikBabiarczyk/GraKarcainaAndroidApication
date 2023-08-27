@@ -46,6 +46,42 @@ public class Player {
         }
         this.completeCartInHeand(game);
     }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public PileOfKart getPileOfKart() {
+        return pileOfKart;
+    }
+
+
+    public void setPileOfKart(PileOfKart pileOfKart) {
+        this.pileOfKart = pileOfKart;
+    }
+    //public void RemoveKart(GridView gridView, int positionStart, int positionFinish){
+
+    //}
+
+    public HashMap<Integer, Kart> getPositionKart() {
+        return positionKart;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public ImageAdapter getImageAdapter() {
+        return imageAdapter;
+    }
+
+    public void setImageAdapter(ImageAdapter imageAdapter) {
+        this.imageAdapter = imageAdapter;
+    }
+
+    public ForwardingAttack getInformationAttack() {
+        return informationAttack;
+    }
     public void completeCartInHeand(Game game){
         //LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         int Childcount = this.KartInHeand.size();
@@ -91,33 +127,7 @@ public class Player {
         this.informationAttack.RemoveAttack(position-numCol, SideAttack.TOP);
     }
 
-    public PileOfKart getPileOfKart() {
-        return pileOfKart;
-    }
 
-
-    public void setPileOfKart(PileOfKart pileOfKart) {
-        this.pileOfKart = pileOfKart;
-    }
-    //public void RemoveKart(GridView gridView, int positionStart, int positionFinish){
-
-    //}
-
-    public String getName() {
-        return Name;
-    }
-
-    public ImageAdapter getImageAdapter() {
-        return imageAdapter;
-    }
-
-    public void setImageAdapter(ImageAdapter imageAdapter) {
-        this.imageAdapter = imageAdapter;
-    }
-
-    public ForwardingAttack getInformationAttack() {
-        return informationAttack;
-    }
 
     public class ImageAdapter extends BaseAdapter {
         @Override

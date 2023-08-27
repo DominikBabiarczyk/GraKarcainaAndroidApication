@@ -131,6 +131,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void OnclickButtonEndTurn(View v){
+        ArrayList<Integer> a = game.Buttle();
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         linearLayout.removeAllViews();
         //Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();

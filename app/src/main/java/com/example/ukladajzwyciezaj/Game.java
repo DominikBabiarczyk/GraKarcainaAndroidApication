@@ -4,15 +4,18 @@ import android.content.Context;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+
 
 public class Game {
     private PileOfKart pileOfKart;
     ArrayList<Player> Players;
     private int CurrentPlayerIndex = Integer.MAX_VALUE;
 
-    public Game(Context context,GameActivity gameActivity, ArrayList<String> NamePlayersList) throws IOException {
+    public Game(Context context, GameActivity gameActivity, ArrayList<String> NamePlayersList) throws IOException {
         this.pileOfKart = new PileOfKart(context, gameActivity);
         this.Players = new ArrayList<>();
         Player player1;
@@ -51,11 +54,27 @@ public class Game {
         return this.Players.get(this.CurrentPlayerIndex);
     }
 
-    public void Buttle(){
+    public ArrayList<Integer> Buttle(){
+        ArrayList<Integer> kartsToBeRemoved = new ArrayList<>();
+        ArrayList<InfluenceKart> attacks = new ArrayList<>(Arrays.asList(InfluenceKart.TRIPLE_ATTACK, InfluenceKart.DOUBLE_ATTACK, InfluenceKart.ATTACK));
         for (Player player : this.Players){
-            for (HashMap<Integer, InfluenceKart> sideAttack : player.getInformationAttack().getSetSideAttack()){
-                for ()
+            for (Integer i=0; i<4; i++){
+                HashMap<Integer, InfluenceKart> sideAttack = player.getInformationAttack().getSetSideAttack().get(i);
+                for (InfluenceKart powerAttack : attacks){
+                    for (Map.Entry<Integer, InfluenceKart> entry : sideAttack.entrySet()) {
+                        if (!player.getPositionKart().containsKey(entry.getKey())){
+                            continue;
+                        }
+                        Kart attackKart = player.getPositionKart().get(entry.getKey());
+                        SideAttack SideToDefense = helpMetod.getSideToCheckDefense(player.getContext(), i);
+                        if ((entry.getValue() == powerAttack) && (attackKart.getValueAttack().get(SideToDefense) != InfluenceKart.DEFENSE)){
+                            kartsToBeRemoved.add(entry.getKey());
+                        }
+                    }
+                }
             }
         }
+        return kartsToBeRemoved;
     }
+
 }
