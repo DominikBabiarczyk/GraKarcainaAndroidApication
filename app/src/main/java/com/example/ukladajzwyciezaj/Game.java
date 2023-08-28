@@ -80,6 +80,7 @@ public class Game {
                     }
                     for (Pair<Player, Integer> ToRemove : kartsToBeRemoved){
                         ToRemove.getFirst().DeleteKart(ToRemove.getSecond());
+                        ToRemove.getFirst().getImageAdapter().changeFirstImage(R.drawable.grafika_karty, ToRemove.getSecond());
                     }
                 }
             }
@@ -87,20 +88,5 @@ public class Game {
         return kartsToBeRemoved;
     }
 
-    public ArrayList<Pair<Player, Integer>> Buttlev2(){
-        ArrayList<Pair<Player, Integer>> kartsToBeRemoved = new ArrayList<>();
-        ArrayList<InfluenceKart> attacks = new ArrayList<>(Arrays.asList(InfluenceKart.TRIPLE_ATTACK, InfluenceKart.DOUBLE_ATTACK, InfluenceKart.ATTACK));
-        for (Player player : this.Players){
-            HashMap<Integer, Kart> positionKart = player.getPositionKart();
-            for (Map.Entry<Integer, Kart> entry : positionKart.entrySet()) {
-                if (!player.getPositionKart().containsKey(entry.getKey())){
-                    continue;
-                }
-
-                }
-            }
-
-        return kartsToBeRemoved;
-    }
 
 }

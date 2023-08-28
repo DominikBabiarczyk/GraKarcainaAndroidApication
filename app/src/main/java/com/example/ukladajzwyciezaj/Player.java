@@ -147,6 +147,13 @@ public class Player {
             return position;
         }
 
+        public void changeFirstImage(int newImageResource, int position) {
+            if (placeToKartImageVIew.length > position) {
+                placeToKartImageVIew[position].setImageResource(newImageResource);
+                notifyDataSetChanged();
+            }
+        }
+
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             ImageView imageView;
@@ -164,7 +171,7 @@ public class Player {
             //}else {
                 //imageView = (ImageView) convertView;
             //}
-            //imageView.setImageDrawable(placeToKartImageVIew[position].getDrawable());
+            imageView.setImageDrawable(placeToKartImageVIew[position].getDrawable());
             return imageView;
         }
     }

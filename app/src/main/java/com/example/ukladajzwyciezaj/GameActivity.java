@@ -134,8 +134,9 @@ public class GameActivity extends AppCompatActivity {
 
     public void OnclickButtonEndTurn(View v){
         ArrayList<Pair<Player, Integer>> a = game.Buttle();
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
-        linearLayout.removeAllViews();
+        //CurrentPlayer.getImageAdapter().changeFirstImage(R.drawable.kart_left_attack_right_defence, 0);
+        //LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
+        //linearLayout.removeAllViews();
         //Toast.makeText(getBaseContext(),"test", Toast.LENGTH_SHORT).show();
     }
 
