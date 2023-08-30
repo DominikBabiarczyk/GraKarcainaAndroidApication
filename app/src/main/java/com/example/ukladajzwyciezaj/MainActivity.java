@@ -74,4 +74,11 @@ public class MainActivity extends AppCompatActivity {
         linearLayouthorizontal.addView(buttonsubmit, layoutParams);
         linearLayout.addView(linearLayouthorizontal);
     }
+
+    public void OnclickButtonInstruction(View v){
+        Intent intent = new Intent(MainActivity.this, InstructionActivity.class);
+        startActivity(intent);
+    }
+
+
 }
