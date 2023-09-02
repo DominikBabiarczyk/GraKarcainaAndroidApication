@@ -14,8 +14,9 @@ public class ListInstructionAdapter extends ArrayAdapter {
     Activity activity;
     String[] description;
     int[] picture;
+
     public ListInstructionAdapter(Activity a, int[] pi, String[] de){
-        super(a, R.layout.card_instruction, Collections.singletonList(pi));
+        super(a, R.layout.card_instruction, de);
         activity = a;
         picture = pi;
         description = de;
