@@ -16,16 +16,12 @@ public class InstructionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruction);
-        for (int j=0; j<obrazki.length; j++){
-            obrazki[j] = getResources().getIdentifier("grafika_karty", "drawablr", getPackageName());
+        for (int j=0; j<opis.length; j++){
+            obrazki[j] = getResources().getIdentifier("grafika_karty", "drawable", getPackageName());
         }
         ListView listView = (ListView) findViewById(R.id.listView);
         ListInstructionAdapter adapter = new ListInstructionAdapter(this, obrazki, opis);
         listView.setAdapter(adapter);
-        listView.setOnClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView parent, View v, int position, long id){
-                Toast.makeText(getBaseContext(),"wybrano", Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 }
