@@ -60,7 +60,7 @@ public class helpMetod {
             public void onClick(View v) {
                 EditText name = (EditText) ((Activity) context).findViewById(IdPlayers);
                 String text = name.getText().toString().trim();
-                if (!NamePlayers.contains(text)){
+                if (!NamePlayers.contains(text)) {
                     if (text.length() == 0) {
                         Toast.makeText(context.getApplicationContext(), "Nie wprowadzono nazwy", Toast.LENGTH_SHORT).show();
                     } else {
@@ -69,7 +69,7 @@ public class helpMetod {
                         button.setBackground(gradientDrawable);
                         name.setEnabled(false);
                     }
-                }else {
+                } else {
                     Toast.makeText(context.getApplicationContext(), "Ta nazwa już istnieje", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -78,24 +78,24 @@ public class helpMetod {
     }
 
 
-    public static EditText getEditText(Context context,int quantityEditText){
+    public static EditText getEditText(Context context, int quantityEditText) {
         EditText editText = new EditText(context);
         editText.setId(quantityEditText);
         int maxLength = 15;
-        InputFilter[] filters = new InputFilter[] { new InputFilter.LengthFilter(maxLength) };
+        InputFilter[] filters = new InputFilter[]{new InputFilter.LengthFilter(maxLength)};
         editText.setFilters(filters);
         return editText;
     }
 
-    public static TextView getTextView(Context context){
+    public static TextView getTextView(Context context) {
         TextView bigDotTextVIew = new TextView(context);
         bigDotTextVIew.setText("\u2022");
         bigDotTextVIew.setTextSize(30);
         return bigDotTextVIew;
     }
 
-    public static SideAttack getSideToCheckDefense(Context context, Integer integer){
-        if (integer == 0){
+    public static SideAttack getSideToCheckDefense(Context context, Integer integer) {
+        if (integer == 0) {
             return SideAttack.LEFT;
         } else if (integer == 1) {
             return SideAttack.RIGHT;
@@ -105,6 +105,5 @@ public class helpMetod {
             return SideAttack.TOP;
         }
     }
-
 
 }

@@ -23,8 +23,6 @@ import java.util.ArrayList;
 
 public class InstructionActivity extends AppCompatActivity {
 
-    int[] pictureFunctionaly = new int[9];
-    String[] descriptionFunctionaly = {"a", "v", "f", "w", "b", "m", "q", "d", "b"};
     ListInstructionAdapter adapterCards;
     ListInstructionAdapter adapterFunctionaly;
 
@@ -34,48 +32,8 @@ public class InstructionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_instruction);
 
-        InputStream inputStream = this.getResources().openRawResource(R.raw.set_information_about_kart);
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        String line;
-        StringBuilder stringBuilder = new StringBuilder();
-        ArrayList<String> name = new ArrayList<>();
-        ArrayList<String> description = new ArrayList<>();
-        ArrayList<Integer> picture = new ArrayList<>();
-
-        while (true) {
-            try {
-                if (!((line = bufferedReader.readLine()) != null)) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            String[] actualValue = line.split(";");
-            stringBuilder.append(line);
-            if (actualValue[0].equals("----name_grafic----")) {
-                continue;
-            }
-            name.add(actualValue[0]);
-            description.add(actualValue[1]);
-            picture.add(getResources().getIdentifier(actualValue[2], "drawable", getPackageName()));
-        }
-
-        /*
-        int[] pictureCards = new int[name.size()];
-        String[] descriptionCards = new String[name.size()];
-        String[] nameCards = new String[name.size()];
-         */
-        int[] pictureCards = new int[picture.size()];
-        for (int j=0; j<description.size(); j++){
-            pictureCards[j] = picture.get(j);
-        }
-
-
-        for (int j=0; j<descriptionFunctionaly.length; j++){
-            pictureFunctionaly[j] = getResources().getIdentifier("kart_to_insite","drawable", getPackageName());
-        }
-        adapterCards = new ListInstructionAdapter(this, pictureCards, description.toArray(new String[description.size()]));
-        adapterFunctionaly = new ListInstructionAdapter(this, pictureFunctionaly, descriptionFunctionaly);
+        adapterCards = getListInstructionAdapter(this.getResources().openRawResource(R.raw.instruction_cards));
+        adapterFunctionaly = getListInstructionAdapter(this.getResources().openRawResource(R.raw.functionality_instruction));
     }
 
     public void OnClickButtonCards(View v){
@@ -98,4 +56,40 @@ public class InstructionActivity extends AppCompatActivity {
         listView.setAdapter(adapterFunctionaly);
     }
 
+    public ListInstructionAdapter getListInstructionAdapter(InputStream inputStream){
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        String line;
+        StringBuilder stringBuilder = new StringBuilder();
+        ArrayList<String> name = new ArrayList<>();
+        ArrayList<String> description = new ArrayList<>();
+        ArrayList<Integer> picture = new ArrayList<>();
+
+        while (true) {
+            try {
+                if (!((line = bufferedReader.readLine()) != null)) break;
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            String[] actualValue = line.split(";");
+            stringBuilder.append(line);
+            if (actualValue[0].equals("----name_grafic----")) {
+                continue;
+            }
+            name.add(actualValue[1]);
+            description.add(actualValue[2]);
+            picture.add(getResources().getIdentifier(actualValue[0], "drawable", getPackageName()));
+        }
+
+        int[] pictureCards = new int[picture.size()];
+        for (int j=0; j<description.size(); j++){
+            pictureCards[j] = picture.get(j);
+        }
+
+        ListInstructionAdapter adapter = new ListInstructionAdapter(this, pictureCards, description.toArray(new String[description.size()]), name.toArray(new String[name.size()]));
+        return adapter;
+    }
+
 }
+

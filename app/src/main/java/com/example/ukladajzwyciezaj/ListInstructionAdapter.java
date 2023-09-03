@@ -13,13 +13,15 @@ import java.util.Collections;
 public class ListInstructionAdapter extends ArrayAdapter {
     Activity activity;
     String[] description;
+    String[] name;
     int[] picture;
 
-    public ListInstructionAdapter(Activity a, int[] pi, String[] de){
+    public ListInstructionAdapter(Activity a, int[] pi, String[] de, String[] na){
         super(a, R.layout.card_instruction, de);
         activity = a;
         picture = pi;
         description = de;
+        name = na;
     }
 
     @Override
@@ -37,8 +39,9 @@ public class ListInstructionAdapter extends ArrayAdapter {
         TextView textView2 = (TextView) rowVIew.findViewById(R.id.textView2);
 
         imageView.setImageResource(picture[position]);
-        textView1.setText(description[position]);
+        textView1.setText(name[position]);
         textView2.setText(description[position]);
+
         return rowVIew;
     };
 
