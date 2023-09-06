@@ -8,10 +8,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,8 @@ public class GameActivity extends AppCompatActivity {
     public void setChosen_kart(Kart chosen_kart) {
         this.chosen_kart = chosen_kart;
     }
+
+    String[] opcje = {"Opcja 1", "Opcja 2", "Opcja 3", "Opcja 4"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +109,24 @@ public class GameActivity extends AppCompatActivity {
         }
 
          */
+
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, opcje);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String wybranaOpcja = opcje[position];
+                Toast.makeText(getApplicationContext(), "Wybrano: " + wybranaOpcja, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Obsługa przypadku, gdy nic nie jest wybrane
+            }
+        });
     }
 
     public void completeCartInHeand(View v){
