@@ -120,6 +120,10 @@ public class GameActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String wybranaOpcja = opcje[position];
                 Toast.makeText(getApplicationContext(), "Wybrano: " + wybranaOpcja, Toast.LENGTH_SHORT).show();
+                if (position == 1){
+                    Intent intent = new Intent(GameActivity.this, InstructionActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -146,7 +150,7 @@ public class GameActivity extends AppCompatActivity {
         }else{
             Toast.makeText(getBaseContext(),"Nie możesz uzupełnić kart", Toast.LENGTH_SHORT).show();
         }
-         */
+        */
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.linearLayout);
         if(CurrentVIewPlayer!=null) {
             CurrentVIewPlayer.completeCartInHeand(game);
